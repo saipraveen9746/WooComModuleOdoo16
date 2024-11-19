@@ -1,0 +1,69 @@
+<odoo>
+
+    <!-- Tree View for Purchase Requisition -->
+    <record id="purchase_requisition_tree" model="ir.ui.view">
+        <field name="name">purchase.requisition.tree</field>
+        <field name="model">purchase.requisition</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Requisition">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="state"/>
+                <field name="material_number"/>
+                <field name="product_id"/>
+                <field name="product_uom_id"/>
+                <field name="quantity"/>
+                <field name="price"/>
+                <field name="price_total"/>
+                <field name="wbs_grp_id"/>
+                <field name="wbs_project_id"/>
+                <field name="project_id"/>
+                <field name="sub_project_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="purchase_requisition_form_view" model="ir.ui.view">
+        <field name="name">purchase.requisition.form</field>
+        <field name="model">purchase.requisition</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Requisition">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button string="Draft" class="oe_highlight" states="cancelled" type="object" name="action_reset_draft"/>
+                    <button string="Approve" class="oe_highlight" states="draft" type="object" name="action_approve"/>
+                    <button string="Done" class="oe_highlight" states="approved" type="object" name="action_done"/>
+                    <button string="Cancel" class="oe_highlight" states="draft, not in ['approved', 'done']" type="object" name="action_cancel"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="date"/>
+                        <field name="state"/>
+                        <field name="material_number"/>
+                        <field name="product_id"/>
+                        <field name="product_uom_id"/>
+                        <field name="quantity"/>
+                        <field name="price"/>
+                        <field name="price_total"/>
+                        <field name="wbs_grp_id"/>
+                        <field name="wbs_project_id"/>
+                        <field name="project_id"/>
+                        <field name="sub_project_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Viewing Purchase Requisition -->
+    <record id="action_view_purchase_requisition_tree" model="ir.actions.act_window">
+        <field name="name">Purchase Requisition</field>
+        <field name="res_model">purchase.requisition</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_view_material_requisition_view"
+              name="View Material Requisition"
+              parent="fbno_construction_project.main_menu_execution"
+              action="action_view_purchase_requisition_tree"/>
+</odoo>

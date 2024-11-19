@@ -1,0 +1,92 @@
+<odoo>
+
+
+    <record id="view_task_library_tree" model="ir.ui.view">
+        <field name="name">project.task.library</field>
+        <field name="model">project.task.library</field>
+        <field name="arch" type="xml">
+            <tree string="Task Library">
+                <field string="Name" name="name"/>
+                <field name="project_id"/>
+                <field name="sub_project_id"/>
+                <field string="Category" name="category"/>
+                <field string="Material Lines" name="material_line_count" readonly="1"/>
+                <field string="Labour Lines" name="labour_line_count" readonly="1"/>
+                <field string="Minimum Quantity" name="minimum_quantity"/>
+                <field string="Sub Category" name="sub_category"/>
+                <field name="total_material_cost" readonly="1"/>
+                <field name="total_labour_cost" readonly="1"/>
+                <field string="Units" name="unit_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="task_library_form_view" model="ir.ui.view">
+    <field name="name">Task Library Form</field>
+    <field name="model">project.task.library</field>
+    <field name="arch" type="xml">
+        <form string="Task Library">
+            <sheet>
+                <group>
+                    <field name="name" colspan="2"/>
+                    <field name="category"/>
+                    <field name="minimum_quantity"/>
+                    <field name="sub_category"/>
+                    <field name="unit_id"/>
+                    <field name="total_material_cost" readonly="1"/>
+                    <field name="total_labour_cost" readonly="1"/>
+                    <field name="project_id"/>
+                    <field name="sub_project_id"/>
+                </group>
+                <notebook>
+                <page string="Material Lines">
+                    <field name="material_lines_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="product_uom_id"/>
+                            <field name="quantity"/>
+                            <field name="price"/>
+                            <field name="price_total" readonly="1"/>
+                            <field name="wbs_grp_id"/>
+                            <field name="wbs_project_id"/>
+                            <field name="project_id"/>
+                            <field name="sub_project_id"/>
+                        </tree>
+                    </field>
+                    <group>
+                </group>
+                </page>
+                <page string="Labour Lines">
+                    <field name="labour_lines_ids">
+                        <tree editable="bottom">
+                            <field name="name"/>
+                            <field name="labour_type_id"/>
+                            <field name="uom_id"/>
+                            <field name="quantity"/>
+                            <field name="rate"/>
+                            <field name="subtotal" readonly="1"/>
+                        </tree>
+                    </field>
+                </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+    <record id="action_view_task_library_tree" model="ir.actions.act_window">
+        <field name="name">Task Library</field>
+        <field name="res_model">project.task.library</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_task_library"
+              name="Task Library"
+              parent="main_menu_project_setup"
+              action="action_view_task_library_tree"
+              />
+</odoo>
+
+

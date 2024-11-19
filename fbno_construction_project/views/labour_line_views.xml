@@ -1,0 +1,54 @@
+<odoo>
+    <!-- Tree View for wbs.task -->
+    <record id="view_wbs_group_tree" model="ir.ui.view">
+        <field name="name">wbs.group.tree</field>
+        <field name="model">wbs.group</field>
+        <field name="arch" type="xml">
+            <tree string="WBS Groups">
+                <field name="wbs_group_name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for wbs.task -->
+    <record id="wbs_group_form_view" model="ir.ui.view">
+        <field name="name">wbs.group.form</field>
+        <field name="model">wbs.group</field>
+        <field name="arch" type="xml">
+            <form string="WBS Group">
+                <sheet>
+                    <group>
+                        <field name="wbs_group_name"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                     <group string="WBS Tasks">
+                        <field name="task_library_ids" widget="many2many">
+                            <tree>
+                                <field name="name"/>
+                                <field name="category"/>
+                                <field name="minimum_quantity"/>
+                                <field name="total_material_cost"/>
+                                <field name="total_labour_cost"/>
+                                <field name="unit_id"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action and Menu for wbs.task -->
+    <record id="action_view_wbs_group_tree" model="ir.actions.act_window">
+        <field name="name">WBS Groups</field>
+        <field name="res_model">wbs.group</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_wbs_group"
+              name="WBS Group"
+              action="action_view_wbs_group_tree"/>
+</odoo>

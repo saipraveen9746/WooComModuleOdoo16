@@ -1,0 +1,71 @@
+<odoo>
+    <!-- Tree View for Construction Projects -->
+    <record model="ir.ui.view" id="construction_project_tree_view">
+        <field name="name">construction.project.tree</field>
+        <field name="model">construction.project</field>
+        <field name="arch" type="xml">
+            <tree string="Construction Projects">
+                <field name="name" string="Name"/>
+                <field name="project_manager" string="Project Manager"/>
+                <field name="company_id" string="Company"/>
+                <field name="start_date" string="Start Date"/>
+                <field name="end_date" string="End Date"/>
+                <field name="budget" string="Budget"/>
+                <field name="client_id" string="Client"/>
+                <field name="location" string="Location"/>
+                <field name="status" string="Status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Construction Projects -->
+    <record id="construction_project_form_view" model="ir.ui.view">
+        <field name="name">construction.project.form</field>
+        <field name="model">construction.project</field>
+        <field name="arch" type="xml">
+            <form string="Construction Project Form">
+                <header>
+                    <button name="action_start_project" type="object" string="Start Project" class="oe_highlight"/>
+                    <button name="action_complete_project" type="object" string="Mark as Completed" class="btn-primary"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,approved,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <notebook>
+                        <!-- Project Details Tab -->
+                        <page string="Project Details">
+                            <group>
+                                <field name="name" string="Name"/>
+                                <field name="project_manager" string="Project Manager"/>
+                                <field name="company_id" string="Company"/>
+                            </group>
+                            <group>
+                                <field name="start_date" string="Start Date"/>
+                                <field name="end_date" string="End Date"/>
+                                <field name="location" string="Location"/>
+                            </group>
+                        </page>
+
+                        <!-- Budget & Client Tab -->
+                        <page string="Budget and Client">
+                            <group>
+                                <field name="budget" string="Budget"/>
+                                <field name="client_id" string="Client"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <!-- Action for Construction Projects -->
+    <record model="ir.actions.act_window" id="construction_list_action">
+        <field name="name">Construction Projects</field>
+        <field name="res_model">construction.project</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="main_construction_menu" name="Construction"/>
+    <menuitem id="construction_menu" name="Projects" parent="main_construction_menu" action="construction_list_action"/>
+</odoo>

@@ -1,0 +1,43 @@
+<odoo>
+    <!-- Form View for WBS Task Wizard -->
+    <record id="view_labour_lines_wizard_form" model="ir.ui.view">
+        <field name="name">wbs.task.wizard.labour.form</field>
+        <field name="model">wbs.task.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Search Labour Lines">
+                <group>
+                    <field name="project_id"/>
+                    <field name="sub_project_id"/>
+                    <field name="wbs_grp_ids"/>
+                </group>
+                <group string="Labour Lines">
+                    <field name="labour_lines_ids">
+                        <tree editable="bottom">
+                            <field name="select"/>
+                            <field name="name"/>
+                            <field name="uom_id"/>
+                            <field name="quantity"/>
+                            <field name="rate"/>
+                            <field name="subtotal" readonly="1"/>
+                        </tree>
+                    </field>
+                </group>
+
+                <footer>
+                    <button name="search_labour_lines" string="Search" type="object" class="btn-primary"/>
+<!--                    <button name="add_material_lines_to_requisition" string="Add to Requisition" type="object" class="btn-primary"/>-->
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_labour_lines_wizard" model="ir.actions.act_window">
+        <field name="name">Select Labour Lines</field>
+        <field name="res_model">wbs.task.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_execution_labour_lines_wizard_menu" name="Create Labour Requisition" parent="main_menu_execution" action="action_labour_lines_wizard"/>
+</odoo>

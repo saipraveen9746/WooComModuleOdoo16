@@ -1,0 +1,48 @@
+<odoo>
+
+
+    <record id="view_sub_project_tree" model="ir.ui.view">
+        <field name="name">sub.project</field>
+        <field name="model">sub.project</field>
+        <field name="arch" type="xml">
+            <tree string="Sub Projects">
+                <field string="Name" name="name"/>
+                <field string="Project" name="project_id"/>
+                <field string="Budget Applicable" name="budget_applicable"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sub_project_form_view">
+        <field name="name">Sub Project Form</field>
+        <field name="model">sub.project</field>
+        <field name="arch" type="xml">
+            <form string="Sub Project">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="project_id"/>
+                        <field name="budget_applicable"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_sub_project_tree" model="ir.actions.act_window">
+        <field name="name">Sub Projects</field>
+        <field name="res_model">sub.project</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="main_menu_project_setup" name="Project Setup" parent="project.menu_main_pm"
+    />
+    <menuitem id="menu_sub_project"
+              name="Sub Project"
+              parent="main_menu_project_setup"
+              action="action_view_sub_project_tree"
+              />
+
+</odoo>
+
+

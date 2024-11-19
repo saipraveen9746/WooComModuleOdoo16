@@ -1,0 +1,44 @@
+<odoo>
+    <record id="view_construction_purchase_order_wizard_form" model="ir.ui.view">
+        <field name="name">construction.purchase.order.wizard.form</field>
+        <field name="model">construction.purchase.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Search Approved Purchase Requisitions">
+                <group>
+                    <field name="date_planned" />
+                    <field name="project_id"/>
+                    <field name="sub_project_id"/>
+                    <field name="wbs_project_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </group>
+                <separator string="Approved Purchase Requisitions"/>
+                <field name="requisition_ids">
+                    <tree string="Approved Purchase Requisitions" editable="bottom">
+                        <field name="select"/>
+                        <field name="name"/>
+                        <field name="project_id"/>
+                        <field name="sub_project_id"/>
+                        <field name="date"/>
+                        <field name="product_id"/>
+                        <field name="product_uom_id"/>
+                        <field name="quantity"/>
+                        <field name="price"/>
+                        <field name="price_total"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="search_purchase_requisition" string="Search" type="object" class="btn-primary"/>
+                    <button name="add_requisition_to_purchase_order" string="Add to Requisition" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_construction_purchase_order_wizard" model="ir.actions.act_window">
+        <field name="name">Select Purchase Orders</field>
+        <field name="res_model">construction.purchase.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acces_sub_project,sub_project,model_sub_project,,1,1,1,1
+acces_project_task_library,project_task_library,model_project_task_library,,1,1,1,1
+acces_task_material_line,task_material_lines,model_task_material_lines,,1,1,1,1
+acces_wbs_task,wbs_task,model_wbs_task,,1,1,1,1
+acces_wbs_group,wbs_group,model_wbs_group,,1,1,1,1
+acces_construction_labour_lines,construction_labour_lines,model_construction_labour_lines,,1,1,1,1
+acces_construction_labour_type,construction_labour_type,model_construction_labour_type,,1,1,1,1
+acces_purchase_requisition,purchase_requisition,model_purchase_requisition,,1,1,1,1
+acces_wbs_task_wizard,wbs_task_wizard,model_wbs_task_wizard,,1,1,1,1
+acces_construction_purchase_order_wizard,construction_purchase_order_wizard,model_construction_purchase_order_wizard,,1,1,1,1

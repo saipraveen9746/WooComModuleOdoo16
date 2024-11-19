@@ -1,0 +1,64 @@
+<odoo>
+    <!-- Tree View for wbs.task -->
+    <record id="view_wbs_project_tree" model="ir.ui.view">
+        <field name="name">wbs.task.tree</field>
+        <field name="model">wbs.task</field>
+        <field name="arch" type="xml">
+            <tree string="WBS Projects">
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="sub_project_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for wbs.task -->
+    <record id="wbs_project_form_view" model="ir.ui.view">
+        <field name="name">wbs.task.form</field>
+        <field name="model">wbs.task</field>
+        <field name="arch" type="xml">
+            <form string="WBS Project">
+                <sheet>
+                      <group string="Project WBS">
+                        <field name="name"/>
+                        <field name="project_id"/>
+                        <field name="sub_project_id"/>
+                    </group>
+                    <notebook>
+                    <page string="WBS Groups">
+                    <group>
+                        <field name="wbs_task_group_ids" widget="one2many">
+                            <tree>
+                                <field name="task_library_ids" widget="one2many"/>
+                            </tree>
+                        </field>
+                    </group>
+                    </page>
+
+<!--                    <page string="Estimated Labour">-->
+<!--                    <group>-->
+<!--                        <field name="wbs_task_group_ids" widget="one2many">-->
+<!--                            <tree>-->
+<!--                                <field name="task_library_ids" widget="one2many"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                    </group>-->
+<!--                    </page>-->
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action and Menu for wbs.task -->
+    <record id="action_view_wbs_project_tree" model="ir.actions.act_window">
+        <field name="name">WBS Projects</field>
+        <field name="res_model">wbs.task</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_wbs_project"
+              name="WBS Project"
+              parent="main_menu_project_setup"
+              action="action_view_wbs_project_tree"/>
+</odoo>
